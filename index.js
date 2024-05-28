@@ -1,1 +1,0 @@
-console.log("Hellow World with JavaScript, e agora no git")
