@@ -1,0 +1,1 @@
+console.log("Criando tudo pelo cmd!")
