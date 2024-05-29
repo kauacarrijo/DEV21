@@ -1,1 +1,2 @@
-console.log("Criando tudo pelo cmd!")
+console.log("Navegando pelo cmd");
+console.log("Conhecendo ambiente de trabalho");
