@@ -7,15 +7,11 @@ for(i = 0; i < numeroAux; i++){
     listaUm[i] = prompt(`Digite o número ${i + 1}`);
 }
 
-for(i = 0; i < numeroAux; i++){
-    console.log(listaUm[i]);
-}
+console.log("Lista original: " + listaUm);
 
 for(i = 0, j = numeroAux - 1; i < numeroAux; i++){
     listaDois[i] = listaUm[j];
     j--;
 }
 
-for(i = 0; i < numeroAux; i++){
-    console.log(listaDois[i]);
-}
+console.log("Lista invertida: " + listaDois);

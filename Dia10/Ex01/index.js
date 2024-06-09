@@ -1,8 +1,18 @@
-let numeroEscolhido, listaNumeros, i;
-listaNumeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-numeroEscolhido = Number(prompt("Escolha um número"));
-for(i = 0; i < listaNumeros.length; i++){
+let numeroEscolhido, listaNumeros, listaIndices, i, j;
+listaNumeros = [];
+listaIndices = [];
+
+for(i = 0; i < 10; i++){
+    listaNumeros[i] = Number(prompt(`Digite o elemento ${i + 1}`));
+}
+
+numeroEscolhido = Number(prompt("Escolha um número para ser procurado:"));
+
+for(i = 0, j = 0; i < 10; i++){
     if(listaNumeros[i] === numeroEscolhido){
-        console.log("Indice " + i);
+        listaIndices[j] = i;
+        j++;
     }
 }
+
+console.log(`O número ${numeroEscolhido} foi encontrado nos índices ${listaIndices}.`);
