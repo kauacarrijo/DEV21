@@ -1,4 +1,4 @@
-let i, j, listaUm, listaDois, numeroAux;
+let i, j, listaUm, listaDois;
 listaUm = [];
 listaDois = [];
 
