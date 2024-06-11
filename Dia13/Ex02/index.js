@@ -1,48 +1,67 @@
-let imc, anoDeNascimento, nome, idade, peso, altura, profissao, condicao;
-let anoAtual = 2024;
-
-do{
-    nome = prompt("Digite seu nome:");
-    idade = Number(prompt("Digite sua idade:"));
-    peso = Number(prompt("Digite seu peso: (Kg)"));
-    altura = Number(prompt("Digite sua altura: (cm)"));
-    profissao = prompt("Digite sua profissão:");
-
-    console.log(`Olá ${nome}, você tem ${idade} anos, é ${profissao}, tem ${altura / 100}M de altura e pesa ${peso}kg.`);
-
-    if(idade >= 18){
-        console.log("Está liberado para tomar umas geladas.")
-    }else {
-        console.log("Sem gelada para você.")
+class Carro{
+    nome;
+    potencia;
+    velocidadeMaxima;
+    aceleracao;
+    constructor(nome, potencia, velocidadeMaxima, aceleracao){
+        this.nome = nome;
+        this.potencia = potencia;
+        this.velocidadeMaxima = velocidadeMaxima;
+        this.aceleracao = aceleracao;
     }
 
-    console.log("Sua idade em meses: " + idade * 12);
-    console.log("Sua idade em semanas: " + idade * 52);
-    console.log("Sua idade em dias: " + idade * 365);
+    tempoDeCorrida(distancia){
+        let resultado = distancia / (this.velocidadeMaxima / this.aceleracao);
+        return resultado;
+    }
+}
 
-    imc = peso / (2 * (altura / 100));
+class Corrida{
+    nome;
+    tipo;
+    distancia;
+    participantes;
+    vencedor;
+    constructor(nome, tipo, distancia, participantes){
+        this.nome = nome;
+        this.tipo = tipo;
+        this.distancia = distancia;
+        this.participantes = participantes;
+    }
 
-    if(imc < 18.5){
-        console.log("Seu imc está menor que 18,5 Kg/m2, você está com Magreza");
-    }else {
-        if(imc <= 24.9){
-            console.log("Seu imc está entre 18,5 Kg/m2 e 24.9 Kg/m2, você está Normal");
-        }else{
-            if(imc <= 30){
-                console.log("Seu imc está entre 24.9 Kg/m2 e 30 Kg/m2, você está com Sobrepeso");
-            }else{
-                console.log("Seu imc está maior que 30 Kg/m2, você está com Obesidade");
+    corrida(){
+        let menorTempo = 99999999;
+        for(let i = 0; i < this.participantes.length; i++){
+            let tempoDeCorrida = this.participantes[i].tempoDeCorrida(this.distancia);
+            if(tempoDeCorrida < menorTempo){
+                this.vencedor = this.participantes[i].nome;
+                menorTempo = tempoDeCorrida;
             }
         }
     }
 
-    anoDeNascimento = anoAtual - idade;
-
-    console.log("Seu ano de nascimento é: " + anoDeNascimento);
-
-    for(let i = anoDeNascimento, j = 0; i < anoAtual; i++, j++){
-        console.log(`Em ${i} você tinha ${j} anos de idade.`);
+    vencedorCorrida(){
+        alert(`O vencedor da última corrida foi ${this.vencedor}!`);
     }
+}
 
-    condicao = Number(prompt("Deseja continuar?\nDigite (0) para parar;\nDigite (1) para continuar."));
-}while(condicao);
+let carros = [];
+let corrida, localCorrida, tipoCorrida, distanciaCorrida;
+let numeroDeCarros = Number(prompt("Digite o número de carros participantes:"));
+
+for(let i = 0; i < numeroDeCarros; i++){
+    let nome = prompt(`Digite o nome da equipe do carro ${i + 1}:`);
+    let potencia = Number(prompt(`Digite o número de cavalos de potência do carro ${i + 1}:`));
+    let velocidadeMaxima = Number(prompt(`Digite a maior velocidade que o carro ${i + 1} pode alcançar:`));
+    let aceleracao = Number(prompt(`Digite o tempo em segundos que o carro ${i + 1} leva para ir de 0 a 100 km/h:`));
+    let carro = new Carro(nome, potencia, velocidadeMaxima, aceleracao);
+    carros[i] = carro;
+}
+
+localCorrida = prompt("Digite o nome do local da corrida:");
+tipoCorrida = prompt("Digite o tipo da corrida:");
+distanciaCorrida = prompt("Digite o total em metros da corrida:");
+corrida = new Corrida(localCorrida, tipoCorrida, distanciaCorrida, carros);
+
+corrida.corrida();
+corrida.vencedorCorrida();
